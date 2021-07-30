@@ -18,6 +18,18 @@ public class Employee {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "phone")
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public long getId() {
         return id;
     }
