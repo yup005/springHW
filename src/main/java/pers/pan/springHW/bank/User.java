@@ -28,8 +28,8 @@ public class User {
         return accountNumber;
     }
 
-    public void setAccountNumber(long account_number) {
-        this.accountNumber = account_number;
+    public void setAccountNumber(long accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getFirstName() {

@@ -39,37 +39,4 @@ public class UserServiceImpl implements UserService {
     public void deleteUserByAccountNumber(long accountNumber) {
         this.userRepository.deleteById(accountNumber);
     }
-
-    @Override
-    public void depositByAccountNumber(long accountNumber, double funds) {
-        Optional<User> optional = userRepository.findById(accountNumber);
-        User user = null;
-        if (optional.isPresent()) {
-            user = optional.get();
-            if (funds < 5 || funds > 10000)
-                throw new RuntimeException("Invalid fund.");
-            else
-                user.setBalance(user.getBalance() + funds);
-        } else {
-            throw new RuntimeException(" User not found for account number ::" +
-                    " " + accountNumber);
-        }
-    }
-
-    @Override
-    public void withdrawByAccountNumber(long accountNumber, double funds) {
-        Optional<User> optional = userRepository.findById(accountNumber);
-        User user = null;
-        if (optional.isPresent()) {
-            user = optional.get();
-            if (funds > user.getBalance())
-                throw new RuntimeException("Invalid fund.");
-            else
-                user.setBalance(user.getBalance() - funds);
-        } else {
-            throw new RuntimeException(" User not found for account number ::" +
-                    " " + accountNumber);
-        }
-
-    }
 }

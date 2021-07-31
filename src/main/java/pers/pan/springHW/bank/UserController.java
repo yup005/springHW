@@ -22,21 +22,21 @@ public class UserController {
 
     @GetMapping("/bank/user/showNewUserForm")
     public String showNewUserForm(Model model) {
-        // create model attribute to bind form data
         User user = new User();
         model.addAttribute("user", user);
+        user.setBalance(0);
         return "/bank/new_user";
     }
 
     @PostMapping("/bank/user/saveUser")
     public String saveUser(@ModelAttribute("user") User user) {
-        // save employee to database
         userService.saveUser(user);
-        return "redirect:/bank/user";
+        return "redirect:/viewUserPage";
     }
 
     @GetMapping("/bank/user/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
+    public String showFormForUpdate(@PathVariable(value = "id") long id,
+                                    Model model) {
         User user = userService.getUserByAccountNumber(id);
         model.addAttribute("user", user);
         return "/bank/update_user";
@@ -44,23 +44,54 @@ public class UserController {
 
     @GetMapping("/bank/user/deleteUser/{id}")
     public String deleteUser(@PathVariable(value = "id") long id) {
-        // call delete employee method
         this.userService.deleteUserByAccountNumber(id);
-        return "redirect:/bank/user";
+        return "redirect:/viewUserPage";
     }
 
 
-    @GetMapping("/user/deposit/{id}")
-    public String deposit(@PathVariable(value = "id") long id, Model model) {
+    @GetMapping("/bank/user/deposit/{id}")
+    public String showFormForDeposit(@PathVariable(value = "id") long id,
+                                     Model model) {
         User user = userService.getUserByAccountNumber(id);
         model.addAttribute("user", user);
+        double funds = 0;
+        model.addAttribute("funds", funds);
         return "/bank/deposit";
     }
-    @GetMapping("/user/withdraw/{id}")
-    public String withdraw(@PathVariable(value = "id") long id, Model model) {
+
+    @GetMapping("/bank/user/depositFunds")
+    public String deposit(@ModelAttribute("user") User user,
+                          @ModelAttribute("funds") double funds) {
+        if (funds < 5 || funds > 10000) {
+            return "/bank/deposit";
+        } else {
+            user.setBalance(user.getBalance() + funds);
+        }
+        userService.saveUser(user);
+        return "redirect:/viewUserPage";
+    }
+
+
+    @GetMapping("/bank/user/withdraw/{id}")
+    public String showFormForWithdraw(@PathVariable(value = "id") long id,
+                                     Model model) {
         User user = userService.getUserByAccountNumber(id);
         model.addAttribute("user", user);
+        double funds = 0;
+        model.addAttribute("funds", funds);
         return "/bank/withdraw";
+    }
+
+    @GetMapping("/bank/user/withdrawFunds")
+    public String withdraw(@ModelAttribute("user") User user,
+                           @ModelAttribute("funds") double funds) {
+        if (funds > user.getBalance()) {
+            return "/bank/withdraw";
+        } else {
+            user.setBalance(user.getBalance() - funds);
+        }
+        userService.saveUser(user);
+        return "redirect:/viewUserPage";
     }
 
 }

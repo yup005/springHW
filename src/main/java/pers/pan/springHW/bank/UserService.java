@@ -10,8 +10,4 @@ public interface UserService {
     void saveUser(User user);
     User getUserByAccountNumber(long accountNumber);
     void deleteUserByAccountNumber(long accountNumber);
-
-    void depositByAccountNumber(long accountNumber, double funds);
-
-    void withdrawByAccountNumber(long accountNumber, double funds);
 }
