@@ -1,29 +1,18 @@
 package pers.pan.springHW;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pers.pan.springHW.employee.Employee;
 
-@RestController
+@Controller
 @RequestMapping("/test")
 public class TestController {
 
-    @GetMapping()
-    public String getTest() {
-        return "TEST GET";
+    @GetMapping("/showTest2")
+    public String showTest2() {
+        return "/test/test2";
     }
 
-    @PostMapping()
-    public String createTest() {
-        return "TEST POST";
-    }
-
-    @DeleteMapping ()
-    public String deleteTest() {
-        return "TEST Delete";
-    }
-
-    @PutMapping()
-    public String updateTest() {
-        return "TEST PUT";
-    }
 }
 
