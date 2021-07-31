@@ -34,18 +34,18 @@
             <td th:text="${user.accountNumber}"></td>
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
-            <td th:text="${user.balance}">
-                <a th:href="@{/user/deposit/{id}(id=${user.accountNumber})}"
-                   class="btn btn-success">Deposit</a>
-                <a th:href="@{/user/withdraw/{id}(id=${user.accountNumber})}"
-                class="btn btn-warning">Withdraw</a>
-            </td>
+            <td th:text="${user.balance}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.phone}"></td>
-            <td> <a th:href="@{/user/showFormForUpdate/{id}(id=${user.accountNumber})}"
+            <td> <a th:href="@{/bank/user/showFormForUpdate/{id}(id=${user.accountNumber})}"
                     class="btn btn-primary">Update</a>
-                <a th:href="@{/user/deleteUser/{id}(id=${user.accountNumber})}"
+                <a th:href="@{/bank/user/deleteUser/{id}(id=${user.accountNumber})}"
                    class="btn btn-danger">Delete</a>
+                <br><br>
+                <a th:href="@{/bank/user/deposit/{id}(id=${user.accountNumber})}"
+                   class="btn btn-success">Deposit</a>
+                <a th:href="@{/bank/user/withdraw/{id}(id=${user.accountNumber})}"
+                   class="btn btn-info">Withdraw</a>
             </td>
         </tr>
         </tbody>
