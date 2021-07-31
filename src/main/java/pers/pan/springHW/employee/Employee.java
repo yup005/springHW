@@ -1,4 +1,4 @@
-package pers.pan.springHW.Employee;
+package pers.pan.springHW.employee;
 
 import javax.persistence.*;
 

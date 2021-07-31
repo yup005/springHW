@@ -1,4 +1,4 @@
-package pers.pan.springHW.Employee;
+package pers.pan.springHW.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,13 +24,13 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     // display list of employees
-    @GetMapping("/")
-    public String viewHomePage(Model model) {
+    @GetMapping("/employee")
+    public String viewEmployeeHomePage(Model model) {
         model.addAttribute("listEmployees", employeeService.getAllEmployees());
-        return "index";
+        return "employee";
     }
 
-    @GetMapping("/showNewEmployeeForm")
+    @GetMapping("/employee/showNewEmployeeForm")
     public String showNewEmployeeForm(Model model) {
         // create model attribute to bind form data
         Employee employee = new Employee();
@@ -38,14 +38,14 @@ public class EmployeeController {
         return "new_employee";
     }
 
-    @PostMapping("/saveEmployee")
+    @PostMapping("/employee/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
         // save employee to database
         employeeService.saveEmployee(employee);
-        return "redirect:/";
+        return "redirect:/employee";
     }
 
-    @GetMapping("/showFormForUpdate/{id}")
+    @GetMapping("/employee/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
 
         // get employee from the service
@@ -56,11 +56,11 @@ public class EmployeeController {
         return "update_employee";
     }
 
-    @GetMapping("/deleteEmployee/{id}")
+    @GetMapping("/employee/deleteEmployee/{id}")
     public String deleteEmployee(@PathVariable(value = "id") long id) {
 
         // call delete employee method
         this.employeeService.deleteEmployeeById(id);
-        return "redirect:/";
+        return "redirect:/employee";
     }
 }
