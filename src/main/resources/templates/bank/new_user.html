@@ -12,7 +12,7 @@
 <div class="container">
     <h1>User Management System for Bank</h1>
     <hr>
-    <h2>Save User</h2>
+    <h2>Add User</h2>
 
     <form action="#" th:action="@{/bank/user/saveUser}" th:object="${user}"
           method="POST">
@@ -28,7 +28,7 @@
         <input type="text" th:field="*{phone}"
                placeholder="Phone" class="form-control mb-4 col-4">
 
-        <button type="submit" class="btn btn-info col-2"> Save User</button>
+        <button type="submit" class="btn btn-info col-2"> submit</button>
     </form>
 
     <hr>
