@@ -59,7 +59,7 @@ public class UserController {
         return "/bank/deposit";
     }
 
-    @GetMapping("/bank/user/depositFunds")
+    @PostMapping("/bank/user/depositFunds")
     public String deposit(@ModelAttribute("user") User user,
                           @ModelAttribute("funds") double funds) {
         if (funds < 5 || funds > 10000) {
@@ -82,7 +82,7 @@ public class UserController {
         return "/bank/withdraw";
     }
 
-    @GetMapping("/bank/user/withdrawFunds")
+    @PostMapping("/bank/user/withdrawFunds")
     public String withdraw(@ModelAttribute("user") User user,
                            @ModelAttribute("funds") double funds) {
         if (funds > user.getBalance()) {

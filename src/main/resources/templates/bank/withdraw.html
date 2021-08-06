@@ -14,7 +14,7 @@
     <hr>
     <h3>Funds:</h3>
     <form action="#" th:action="@{/bank/user/withdrawFunds}" th:object="${user}"
-          method="GET">
+          method="POST">
         <input type="hidden" th:field="*{accountNumber}" />
         <input type="hidden" th:field="*{firstName}" />
         <input type="hidden" th:field="*{lastName}" />
